@@ -1,10 +1,14 @@
 # frozen_string_literal: true
 
+require 'colorize'
+
 class Board
+  DEFAULT_SQUARES = %w[a b c d e f g h i]
+
   attr_reader :squares
 
   def initialize
-    @squares = %w[a b c d e f g h i]
+    @squares = DEFAULT_SQUARES
   end
 
   def add_mark(index, mark)
@@ -22,6 +26,16 @@ class Board
   private
 
   def row_to_s(row)
-    " #{row[0]} | #{row[1]} | #{row[2]} "
+    colored_row = row.map do |icon|
+      if DEFAULT_SQUARES.include?(icon)
+        icon.yellow
+      elsif icon == 'X'
+        icon.red
+      elsif icon == 'O'
+        icon.blue
+      end
+    end
+
+    " #{colored_row[0]} | #{colored_row[1]} | #{colored_row[2]} "
   end
 end
