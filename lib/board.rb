@@ -3,12 +3,10 @@
 require 'colorize'
 
 class Board
-  DEFAULT_SQUARES = %w[a b c d e f g h i]
-
   attr_reader :squares
 
   def initialize
-    @squares = DEFAULT_SQUARES
+    @squares = %w[a b c d e f g h i]
   end
 
   def add_mark(index, mark)
@@ -27,12 +25,12 @@ class Board
 
   def row_to_s(row)
     colored_row = row.map do |icon|
-      if DEFAULT_SQUARES.include?(icon)
-        icon.yellow
-      elsif icon == 'X'
+      if icon == 'X'
         icon.red
       elsif icon == 'O'
         icon.blue
+      else
+        icon.black
       end
     end
 
