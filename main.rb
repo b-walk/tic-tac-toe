@@ -1,11 +1,7 @@
 #frozen_string_literal: true
 
-require_relative 'lib/board'
+require_relative 'lib/game'
 
-board = Board.new
+game = Game.new
 
-board.add_mark(0, 'X')
-board.view
-
-board.add_mark(4, 'O')
-board.view
+game.play
